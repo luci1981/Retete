@@ -1,0 +1,44 @@
+{% extends 'core/base.html' %}
+
+
+{% block breadcrumb %}
+    <div class="container">
+        <h4>Categorii</h4>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Retete</th>
+                <th style="text-align: center">Titluri</th>
+                <th style="text-align: center">Postari</th>
+                <th style="text-align: center">Ultima Postare</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for categ in categorii %}
+                <tr>
+                    <td>
+                        <a href="{% url 'core:topics' categ.pk %}">{{ categ.name }}</a><br>
+                        <small class="text-muted">{{ categ.description }}</small>
+                    </td>
+                    <td style="text-align: center">{{ categ.topics.count }}</td>
+                    <td style="text-align: center">{{ categ.count_posts }}</td>
+                    <td style="text-align: center">
+                        {% with postare=categ.last_post %}
+                            {% if postare %}
+                                <a href="{% url 'core:discutii' categ.pk postare.topic.pk %}">{{ postare.created_at }}</a>
+                            {% else %}
+                                <small class="text-muted"><i>Nici o postare</i></small>
+                            {% endif %}
+                        {% endwith %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

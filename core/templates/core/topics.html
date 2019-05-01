@@ -1,0 +1,42 @@
+{% extends 'core/base.html' %}
+
+{% block breadcrumb %}
+    <div class="container">
+        <h4>
+            <a href="{% url 'core:index' %}">Categorii</a>/{{ categorie.name }}
+        </h4>
+    </div>
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="container">
+        <a class="btn btn-primary" href="{% url 'core:new' categorie.pk %}">Reteta Noua</a>
+        <p></p>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Subiect</td>
+                <td style="text-align: center">Postari</td>
+
+                <td style="text-align: center">Ultimul post</td>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for topic in categorie.topics.all %}
+                <tr>
+                    <td><a href="{% url 'core:discutii' categorie.pk topic.pk %}">{{ topic.subject }}</a> </td>
+                    <td style="text-align: center">{{ topic.posts.count }}</td>
+{#                    <td style="text-align: center">{{ topic.replies }}</td>#}
+
+                    <td style="text-align: center">{{ topic.last_updated }}</td>
+
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

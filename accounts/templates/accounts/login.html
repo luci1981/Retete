@@ -1,0 +1,20 @@
+{% extends 'accounts/base_acc.html' %}
+{% load bootstrap3 %}
+
+{% block card_title %}
+
+{% endblock %}
+
+{% block content %}
+
+    <form method="POST" novalidate>
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+            <input type="submit" class="btn btn-primary btn-block" value="Signup">
+        {% endbuttons %}
+        <p class="text-center">Allready have an account? <a href="{% url 'accounts:signup' %}">Sign Up</a></p>
+        <p class="text-center"><a href="{% url 'accounts:password_reset' %}">Reset password</a></p>
+    </form>
+
+{% endblock %}

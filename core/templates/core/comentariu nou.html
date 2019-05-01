@@ -1,0 +1,61 @@
+{% extends 'core/base.html' %}
+
+{% load bootstrap3 %}
+
+{% block javascript %}
+    <script>
+        var simplemde = new SimpleMDE();
+    </script>
+{% endblock %}
+
+{% block breadcrumb %}
+
+    <div class="container">
+        <h4>
+            <a href="{% url 'core:index' %}">Categorii</a>/
+            <a href="{% url 'core:topics' topic.categorie.pk %}">{{ topic.categorie.name }}</a>/
+            <a href="{% url 'core:discutii' topic.categorie.pk topic.pk %}">{{ topic.subject }}</a>/
+            Adauga comentariu
+        </h4>
+    </div>
+
+{% endblock %}
+
+{% block content %}
+
+        <form method="post" novalidate>
+            {% csrf_token %}
+            {{ form.as_p }}
+    {#        {% bootstrap_form form %}#}
+            <button class="btn btn-primary" type="submit">Post</button>
+
+        </form>
+
+
+    <p></p>
+    {% for msg in topic.posts.all %}
+        {% if msg.message %}
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <p>USER</p>
+                    </div>
+
+                    <div class="col-lg-7">
+                        {{ msg.get_message_as_markdown|safe|linebreaksbr }}
+                    </div>
+
+                    <div class="col-lg-2 ml-auto">
+                        <p><small><strong>Created:</strong>{{ msg.created_at }}</small><br>
+                            <small><strong>Updated:</strong>{{ msg.updated_at }}</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <p></p>
+    {% endfor %}
+
+{% endblock %}
+

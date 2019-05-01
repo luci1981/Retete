@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %}
+
+{% block javascript %}
+    <script>
+        var simplemde = new SimpleMDE();
+    </script>
+{% endblock %}
+
+{% block breadcrumb %}
+    <div class="container">
+        <h4>
+            <a href="{% url 'core:index' %}">Categorii</a>/
+            <a href="{% url 'core:topics' categorie.pk %}">{{ categorie.name }}</a>/
+            Reteta noua
+        </h4>
+        <p></p>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary" type="submit">Post</button>
+    </form>
+
+
+
+{% endblock %}

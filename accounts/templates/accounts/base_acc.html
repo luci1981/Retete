@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Retete Delicioase - {% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+
+        <style rel='stylesheet'>
+            #titlu{
+                font-size: 2em;
+                font-family: 'Permanent Marker', cursive;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <ul class="nav navbar-nav navbar-logo mx-auto">
+                <li class="nav-item"><a id='titlu' class="navbar-brand" href="{% url 'core:index' %}">Retete Delicioase</a></li>
+            </ul>
+        </nav>
+        <div class="container">
+            <br>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card border-primary mb-3">
+                        <div class="card-header "><h3 class="text-center">{% block card_title %} {% endblock %}</h3></div>
+                        <div class="card-body ">
+                            {% block content %}
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
