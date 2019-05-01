@@ -35,11 +35,12 @@
 
     {% for msg in topic.posts.all %}
         {% if msg.message %}
+        <p></p>
         <div class="card">
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-2">
-                        <p>{{ user.username }}</p>
+                        <p>{{ msg.created_by.username.title }}</p>
                     </div>
 
                     <div class="col-lg-7">
@@ -54,7 +55,7 @@
             </div>
         </div>
         {% endif %}
-        <p></p>
+
     {% endfor %}
 
 

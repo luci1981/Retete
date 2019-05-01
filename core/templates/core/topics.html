@@ -21,7 +21,7 @@
             <tr>
                 <td>Subiect</td>
                 <td style="text-align: center">Postari</td>
-
+                <td style="text-align: center">Utilizator</td>
                 <td style="text-align: center">Ultimul post</td>
 
             </tr>
@@ -31,7 +31,7 @@
                 <tr>
                     <td><a href="{% url 'core:discutii' categorie.pk topic.pk %}">{{ topic.subject }}</a> </td>
                     <td style="text-align: center">{{ topic.posts.count }}</td>
-{#                    <td style="text-align: center">{{ topic.replies }}</td>#}
+                    <td style="text-align: center">{{ topic.starter.username.title }}</td>
 
                     <td style="text-align: center">{{ topic.last_updated }}</td>
 
